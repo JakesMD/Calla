@@ -7,6 +7,9 @@ import 'package:get/get.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  // Initialize the services.
+  await Get.putAsync(() => AssetSvc().init());
+
   // Initialize the controllers.
   await Get.putAsync(() => AppCtl().init());
 
