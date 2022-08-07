@@ -1,5 +1,6 @@
 import 'package:calla/controllers/controllers.dart';
 import 'package:calla/services/services.dart';
+import 'package:calla/themes/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
 
       // Themes:
       theme: ThemeData(
+        textTheme: MyTextTheme,
         scaffoldBackgroundColor: AppCtl.to.colors.background,
       ),
 
