@@ -19,15 +19,11 @@ class MyIllustration extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MySpacedColumn(
-      children: [
-        MyColoredSVG(
-          code: illustration.code,
-          colors: illustration.colors,
-          width: width,
-          height: height,
-        ),
-      ],
+    return MyColoredSVG(
+      code: illustration.code,
+      colors: illustration.colors,
+      width: width,
+      height: height,
     );
   }
 }

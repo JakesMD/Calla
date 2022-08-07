@@ -3,5 +3,10 @@
 
 // views/widgets/
 export 'spaced_column.dart';
+export 'spaced_row.dart';
 export 'colored_svg.dart';
 export 'illustration.dart';
+export 'animated_switcher.dart';
+export 'clickable.dart';
+export 'icon.dart';
+export 'circular_icon_button.dart';

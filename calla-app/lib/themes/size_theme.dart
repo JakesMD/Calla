@@ -2,6 +2,7 @@
 class MySizeTheme {
   // Heights
   static const double illustrationHeight = 200;
+  static const double buttonHeight = 45;
 
   // Spacings
   static const double spacing25 = 25;

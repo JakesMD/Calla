@@ -4,3 +4,5 @@
 export 'color_theme.dart';
 export 'text_theme.dart';
 export 'size_theme.dart';
+export 'duration_theme.dart';
+export 'curve_theme.dart';
