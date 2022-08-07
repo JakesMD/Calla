@@ -1,4 +1,5 @@
 import 'package:calla/controllers/controllers.dart';
+import 'package:calla/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,9 +20,18 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Calla',
       debugShowCheckedModeBanner: false,
+
+      // Themes:
       theme: ThemeData(
         scaffoldBackgroundColor: AppCtl.to.colors.background,
       ),
+
+      // Internationalization:
+      translations: LocalizationSvc(),
+      locale: LocalizationSvc.locale,
+      fallbackLocale: LocalizationSvc.fallbackLocale,
+
+      // Navigation:
       home: Container(),
     );
   }
