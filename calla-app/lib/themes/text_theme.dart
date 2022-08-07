@@ -14,7 +14,7 @@ final TextTheme MyTextTheme = GoogleFonts.poppinsTextTheme(
     ),
     headline2: TextStyle(
       fontSize: 20,
-      fontWeight: FontWeight.bold,
+      fontWeight: FontWeight.w600,
       color: AppCtl.to.colors.text,
     ),
     headline3: TextStyle(

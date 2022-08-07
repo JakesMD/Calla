@@ -4,5 +4,6 @@ import 'package:flutter/material.dart';
 class MyCurveTheme {
   static const ease = Curves.easeInOut;
   static const easeIn = Curves.easeInBack;
+  static const easeOut = Curves.easeOutBack;
   static const elastic = Curves.elasticOut;
 }

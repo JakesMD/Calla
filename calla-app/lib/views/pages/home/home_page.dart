@@ -1,7 +1,10 @@
 import 'package:calla/constants/constants.dart';
+import 'package:calla/controllers/app_controller.dart';
 import 'package:calla/themes/themes.dart';
 import 'package:calla/views/pages/home/widgets/home_page_app_bar.dart';
+import 'package:calla/views/pages/home/widgets/home_page_sensor_reading.dart';
 import 'package:calla/views/widgets/widgets.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -29,6 +32,12 @@ class HomePage extends StatelessWidget {
                   ),
                 ],
               ),
+              MyHomePageSensorReading(
+                text: "66%",
+                icon: CupertinoIcons.drop,
+                percent: 0.66,
+                color: AppCtl.to.colors.purple,
+              )
             ],
           ),
         ),
