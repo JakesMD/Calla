@@ -1,6 +1,13 @@
+import 'package:calla/controllers/app_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize the controllers.
+  await Get.putAsync(() => AppCtl().init());
+
   runApp(const MyApp());
 }
 
@@ -9,7 +16,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Calla',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
