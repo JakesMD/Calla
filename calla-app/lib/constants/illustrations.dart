@@ -1,3 +1,4 @@
+import 'package:calla/controllers/app_controller.dart';
 import 'package:calla/services/services.dart';
 import 'package:calla/themes/themes.dart';
 import 'package:flutter/material.dart';
@@ -21,11 +22,10 @@ enum Illustrations {
 // A map with all the new colors for each illustration in light and dark mode.
 final Map<String, List<Color>> _illustrationColorsMap = {
   "environmentLight": [
-    Colors.black,
-    Colors.black,
-    Colors.black,
-    Colors.black,
-    Colors.black,
+    AppCtl.to.colors.orange, // Hands
+    AppCtl.to.colors.pink, // Sleeves
+    AppCtl.to.colors.text, // Soil
+    AppCtl.to.colors.green, // Leaves
   ],
   "environmentDark": [
     Colors.black,

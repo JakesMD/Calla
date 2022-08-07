@@ -1,6 +1,7 @@
 import 'package:calla/controllers/controllers.dart';
 import 'package:calla/services/services.dart';
 import 'package:calla/themes/themes.dart';
+import 'package:calla/views/pages/pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
       fallbackLocale: LocalizationSvc.fallbackLocale,
 
       // Navigation:
-      home: Container(),
+      home: const HomePage(),
     );
   }
 }

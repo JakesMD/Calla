@@ -1,5 +1,8 @@
 /// The class that contains all the sizes for the app.
 class MySizeTheme {
+  // Heights
+  static const double illustrationHeight = 200;
+
   // Spacings
   static const double spacing25 = 25;
   static const double spacing15 = 15;
