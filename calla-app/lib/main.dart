@@ -1,4 +1,4 @@
-import 'package:calla/controllers/app_controller.dart';
+import 'package:calla/controllers/controllers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'Calla',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: AppCtl.to.colors.background,
       ),
       home: Container(),
     );
