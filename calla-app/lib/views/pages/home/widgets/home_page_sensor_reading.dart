@@ -30,6 +30,7 @@ class MyHomePageSensorReading extends StatelessWidget {
           progressColor: color,
           backgroundColor: Colors.transparent,
           circularStrokeCap: CircularStrokeCap.round,
+          lineWidth: MySizeTheme.borderWidth5,
           animation: true,
           animateFromLastPercent: true,
           animationDuration: MyDurationTheme.m500.inMilliseconds,

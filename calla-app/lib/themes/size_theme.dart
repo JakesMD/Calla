@@ -4,6 +4,10 @@ class MySizeTheme {
   static const double illustrationHeight = 200;
   static const double buttonHeight = 45;
 
+  // Widths
+  static const double borderWidth5 = 5;
+  static const double borderWidth25 = 2.5;
+
   // Spacings
   static const double spacing50 = 50;
   static const double spacing25 = 25;

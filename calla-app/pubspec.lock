@@ -130,6 +130,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.1"
+  intl:
+    dependency: "direct main"
+    description:
+      name: intl
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.17.0"
   lints:
     dependency: transitive
     description:
@@ -137,6 +144,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  liquid_progress_indicator:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: master
+      resolved-ref: d52d162f958c6befda1a1458e84a8095f6155158
+      url: "https://github.com/TechDevSubhopriyo/liquid_progress_indicator.git"
+    source: git
+    version: "0.4.0"
   matcher:
     dependency: transitive
     description:

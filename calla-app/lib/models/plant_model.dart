@@ -2,7 +2,7 @@
 class PlantModel {
   final int number;
   final String name;
-  final String type;
+  final String species;
   final String photoPath;
   final DateTime lastWatered;
   final int preferredLightMin;
@@ -17,7 +17,7 @@ class PlantModel {
   PlantModel({
     required this.number,
     required this.name,
-    required this.type,
+    required this.species,
     required this.lastWatered,
     this.photoPath = '',
     this.preferredHumidityMin = 40,

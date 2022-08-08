@@ -15,34 +15,36 @@ class MyHomePageSensorReadingSection extends StatelessWidget {
         Positioned.fill(
           left: MySizeTheme.pageMargin,
           right: MySizeTheme.pageMargin,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Light:
-              MyHomePageSensorReading(
-                text: "66 %",
-                icon: CupertinoIcons.sun_max,
-                percent: 0.66,
-                color: AppCtl.to.colors.purple,
-              ),
-              // Spacer for illustration:
-              const SizedBox(width: 60),
-              // Temperature:
-              MyHomePageSensorReading(
-                text: "24 °C",
-                icon: CupertinoIcons.thermometer,
-                percent: 1,
-                color: AppCtl.to.colors.orange,
-              ),
-              // Humidity:
-              MyHomePageSensorReading(
-                text: "54 %",
-                icon: CupertinoIcons.drop,
-                percent: 0.54,
-                color: AppCtl.to.colors.blue,
-              ),
-            ],
+          child: Obx(
+            () => Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Light:
+                MyHomePageSensorReading(
+                  text: "${(AppCtl.to.light * 100).toInt()}%",
+                  icon: CupertinoIcons.sun_max,
+                  percent: AppCtl.to.light,
+                  color: AppCtl.to.colors.purple,
+                ),
+                // Spacer for illustration:
+                const SizedBox(width: 60),
+                // Temperature:
+                MyHomePageSensorReading(
+                  text: "${AppCtl.to.temperature.toInt()}°C",
+                  icon: CupertinoIcons.thermometer,
+                  percent: 1,
+                  color: AppCtl.to.colors.orange,
+                ),
+                // Humidity:
+                MyHomePageSensorReading(
+                  text: "${(AppCtl.to.humidity * 100).toInt()}%",
+                  icon: CupertinoIcons.drop,
+                  percent: 0.54,
+                  color: AppCtl.to.colors.blue,
+                ),
+              ],
+            ),
           ),
         ),
         // Illustration:

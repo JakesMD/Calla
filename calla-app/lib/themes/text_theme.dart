@@ -22,18 +22,13 @@ final TextTheme MyTextTheme = GoogleFonts.poppinsTextTheme(
       fontWeight: FontWeight.w500,
       color: AppCtl.to.colors.text,
     ),
-    headline4: TextStyle(
+    bodyText1: TextStyle(
       fontSize: 14,
       fontWeight: FontWeight.normal,
       color: AppCtl.to.colors.text,
     ),
-    bodyText1: TextStyle(
-      fontSize: 12,
-      fontWeight: FontWeight.normal,
-      color: AppCtl.to.colors.text,
-    ),
     bodyText2: TextStyle(
-      fontSize: 10,
+      fontSize: 12,
       fontWeight: FontWeight.normal,
       color: AppCtl.to.colors.text,
     ),

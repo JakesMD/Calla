@@ -25,7 +25,7 @@ class MyHomePagePlant extends StatelessWidget {
   ///
   /// See [_borderedContainer].
   BorderRadius _generateBorderRadius({required bool isInside, required bool curveOnLeft}) {
-    final radius = MySizeTheme.borderRadius15 + (isInside ? 0 : 5);
+    final radius = MySizeTheme.borderRadius15 + (isInside ? 0 : MySizeTheme.borderWidth25);
 
     return BorderRadius.only(
       topLeft: Radius.circular(curveOnLeft ? radius : 0),
@@ -48,7 +48,8 @@ class MyHomePagePlant extends StatelessWidget {
   }) {
     return Container(
       width: width,
-      padding: EdgeInsets.fromLTRB(curveOnLeft ? 5 : 0, 5, !curveOnLeft ? 5 : 0, 5),
+      padding: EdgeInsets.fromLTRB(curveOnLeft ? MySizeTheme.borderWidth25 : 0,
+          MySizeTheme.borderWidth25, !curveOnLeft ? 2 : 0, MySizeTheme.borderWidth25),
       decoration: BoxDecoration(
         color: AppCtl.to.colors.background,
         borderRadius: _generateBorderRadius(isInside: false, curveOnLeft: curveOnLeft),
@@ -107,10 +108,10 @@ class MyHomePagePlant extends StatelessWidget {
                 ],
               ),
 
-              // Type:
+              // Species:
               Text(
-                plant.type,
-                style: MyTextTheme.headline4,
+                plant.species,
+                style: MyTextTheme.bodyText1,
               ),
 
               const Spacer(),
@@ -135,7 +136,7 @@ class MyHomePagePlant extends StatelessWidget {
     ];
 
     return MySpacedRow(
-      spacing: MySizeTheme.spacing10,
+      spacing: MySizeTheme.spacing15,
       // Reverse the children if flipped.
       children: isFlipped ? children.reversed.toList() : children,
     );

@@ -18,3 +18,4 @@ export '../pages/home/widgets/home_page_sensor_reading.dart';
 export '../pages/home/widgets/home_page_sensor_reading_section.dart';
 export '../pages/home/widgets/home_page_plant.dart';
 export '../pages/home/widgets/home_page_plant_section.dart';
+export '../pages/home/widgets/home_page_water_level_indicator.dart';

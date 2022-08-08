@@ -16,23 +16,28 @@ class AppCtl extends GetxController {
   final Rx<PlantModel> _plant1 = PlantModel(
     number: 1,
     name: "Jack",
-    type: "Lily",
+    species: "Lily",
     lastWatered: DateTime.now(),
   ).obs;
 
   final Rx<PlantModel> _plant2 = PlantModel(
     number: 2,
     name: "Jack",
-    type: "Lily",
+    species: "Lily",
     lastWatered: DateTime.now(),
   ).obs;
 
   final Rx<PlantModel> _plant3 = PlantModel(
     number: 3,
     name: "Jack",
-    type: "Lily",
+    species: "Lily",
     lastWatered: DateTime.now(),
   ).obs;
+
+  final RxDouble _waterLevel = 1.0.obs;
+  final RxDouble _light = 0.75.obs;
+  final RxDouble _temperature = 25.0.obs;
+  final RxDouble _humidity = 0.5.obs;
 
   /// The current color theme.
   MyColorTheme get colors => _colors.value;
@@ -40,6 +45,11 @@ class AppCtl extends GetxController {
   PlantModel get plant1 => _plant1.value;
   PlantModel get plant2 => _plant2.value;
   PlantModel get plant3 => _plant3.value;
+
+  double get waterLevel => _waterLevel.value;
+  double get light => _light.value;
+  double get temperature => _temperature.value;
+  double get humidity => _humidity.value;
 
   /// Initializes the [AppCtl] and returns an instance of it.
   Future<AppCtl> init() async {

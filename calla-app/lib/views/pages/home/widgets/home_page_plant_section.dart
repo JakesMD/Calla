@@ -12,7 +12,7 @@ class MyHomePagePlantSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => MySpacedColumn(
-        spacing: MySizeTheme.spacing10,
+        spacing: MySizeTheme.spacing15,
         children: [
           MyHomePagePlant(
             plant: AppCtl.to.plant1,
