@@ -5,6 +5,7 @@ import 'package:calla/views/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:get/get.dart';
 
 /// A representation of a [PlantModel].
 class MyHomePagePlant extends StatelessWidget {
@@ -97,7 +98,7 @@ class MyHomePagePlant extends StatelessWidget {
                         style: MyTextTheme.headline2,
                         children: [
                           TextSpan(
-                            text: " is ${plant.generateMood()}",
+                            text: " ${"is ${plant.generateMood()}".tr}",
                             style: MyTextTheme.headline3,
                           ),
                         ],
@@ -120,13 +121,18 @@ class MyHomePagePlant extends StatelessWidget {
               MySpacedRow(
                 children: [
                   Expanded(
-                    child: Text(
-                      "last watered: ${DateFormat.MMMd().format(plant.lastWatered)}, ${DateFormat.Hm().format(plant.lastWatered)}",
-                      style: MyTextTheme.bodyText2,
-                      textAlign: TextAlign.end,
-                    ),
+                    child: plant.lastWatered != null
+                        ? Text(
+                            "${"last watered".tr}: ${DateFormat.MMMd().format(plant.lastWatered!)}, ${DateFormat.Hm().format(plant.lastWatered!)}",
+                            style: MyTextTheme.bodyText2,
+                            textAlign: TextAlign.end,
+                          )
+                        : Container(),
                   ),
-                  const MyIcon(CupertinoIcons.arrow_right)
+                  MyIcon(
+                    CupertinoIcons.arrow_right,
+                    onTap: () => AppCtl.to.goToPlantPage(plant.number),
+                  )
                 ],
               ),
             ],

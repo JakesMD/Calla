@@ -2,3 +2,4 @@
 // This way, only the import of this file is necessary and reduces the amount of imports.
 
 export 'home/home_page.dart';
+export 'plant/plant_page.dart';

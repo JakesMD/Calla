@@ -1,24 +1,24 @@
 /// A model that represents a plant.
 class PlantModel {
   final int number;
-  final String name;
-  final String species;
-  final String photoPath;
-  final DateTime lastWatered;
-  final int preferredLightMin;
-  final int preferredLightMax;
-  final int preferredTemperatureMin;
-  final int preferredTemperatureMax;
-  final int preferredHumidityMin;
-  final int preferredHumidityMax;
-  final int preferredWater;
-  final bool isOff;
+  String name;
+  String species;
+  String photoPath;
+  DateTime? lastWatered;
+  int preferredLightMin;
+  int preferredLightMax;
+  int preferredTemperatureMin;
+  int preferredTemperatureMax;
+  int preferredHumidityMin;
+  int preferredHumidityMax;
+  int preferredWater;
+  bool isOff;
 
   PlantModel({
     required this.number,
     required this.name,
     required this.species,
-    required this.lastWatered,
+    this.lastWatered,
     this.photoPath = '',
     this.preferredHumidityMin = 40,
     this.preferredHumidityMax = 70,

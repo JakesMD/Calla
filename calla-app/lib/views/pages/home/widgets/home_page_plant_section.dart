@@ -15,16 +15,16 @@ class MyHomePagePlantSection extends StatelessWidget {
         spacing: MySizeTheme.spacing15,
         children: [
           MyHomePagePlant(
-            plant: AppCtl.to.plant1,
+            plant: AppCtl.to.plants[0],
             isFlipped: true,
             color: AppCtl.to.colors.green,
           ),
           MyHomePagePlant(
-            plant: AppCtl.to.plant2,
+            plant: AppCtl.to.plants[1],
             color: AppCtl.to.colors.orange,
           ),
           MyHomePagePlant(
-            plant: AppCtl.to.plant3,
+            plant: AppCtl.to.plants[2],
             isFlipped: true,
             color: AppCtl.to.colors.pink,
           ),

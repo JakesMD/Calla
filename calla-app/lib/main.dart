@@ -1,3 +1,4 @@
+import 'package:calla/constants/constants.dart';
 import 'package:calla/controllers/controllers.dart';
 import 'package:calla/services/services.dart';
 import 'package:calla/themes/themes.dart';
@@ -13,6 +14,7 @@ void main() async {
 
   // Initialize the controllers.
   await Get.putAsync(() => AppCtl().init());
+  Get.put(PlantPageCtl());
 
   runApp(const MyApp());
 }
@@ -37,8 +39,20 @@ class MyApp extends StatelessWidget {
       locale: LocalizationSvc.locale,
       fallbackLocale: LocalizationSvc.fallbackLocale,
 
-      // Navigation:
+      // Navigation
+      customTransition: MyPageTransition(),
+      transitionDuration: MyDurationTheme.m250,
       home: const HomePage(),
+      getPages: [
+        GetPage(
+          name: AppRoutes.home,
+          page: () => const HomePage(),
+        ),
+        GetPage(
+          name: AppRoutes.plant,
+          page: () => const PlantPage(),
+        ),
+      ],
     );
   }
 }

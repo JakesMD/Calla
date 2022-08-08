@@ -1,4 +1,6 @@
-import 'package:calla/models/plant_model.dart';
+import 'package:calla/constants/constants.dart';
+import 'package:calla/controllers/controllers.dart';
+import 'package:calla/models/models.dart';
 import 'package:calla/themes/themes.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -13,26 +15,26 @@ class AppCtl extends GetxController {
   final Rx<MyColorTheme> _colors =
       Get.isDarkMode ? MyColorTheme.dark().obs : MyColorTheme.light().obs;
 
-  final Rx<PlantModel> _plant1 = PlantModel(
-    number: 1,
-    name: "Jack",
-    species: "Lily",
-    lastWatered: DateTime.now(),
-  ).obs;
-
-  final Rx<PlantModel> _plant2 = PlantModel(
-    number: 2,
-    name: "Jack",
-    species: "Lily",
-    lastWatered: DateTime.now(),
-  ).obs;
-
-  final Rx<PlantModel> _plant3 = PlantModel(
-    number: 3,
-    name: "Jack",
-    species: "Lily",
-    lastWatered: DateTime.now(),
-  ).obs;
+  final List<PlantModel> plants = [
+    PlantModel(
+      number: 1,
+      name: "Jack",
+      species: "Lily",
+      lastWatered: DateTime.now(),
+    ),
+    PlantModel(
+      number: 2,
+      name: "Jack",
+      species: "Lily",
+      lastWatered: DateTime.now(),
+    ),
+    PlantModel(
+      number: 3,
+      name: "Jack",
+      species: "Lily",
+      lastWatered: DateTime.now(),
+    ),
+  ];
 
   final RxDouble _waterLevel = 1.0.obs;
   final RxDouble _light = 0.75.obs;
@@ -41,10 +43,6 @@ class AppCtl extends GetxController {
 
   /// The current color theme.
   MyColorTheme get colors => _colors.value;
-
-  PlantModel get plant1 => _plant1.value;
-  PlantModel get plant2 => _plant2.value;
-  PlantModel get plant3 => _plant3.value;
 
   double get waterLevel => _waterLevel.value;
   double get light => _light.value;
@@ -60,5 +58,10 @@ class AppCtl extends GetxController {
     ]);
 
     return this;
+  }
+
+  void goToPlantPage(int plantNumber) {
+    PlantPageCtl.to.plant = plants[plantNumber - 1];
+    Get.toNamed(AppRoutes.plant);
   }
 }
