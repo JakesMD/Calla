@@ -7,5 +7,12 @@ const en_US = <String, String>{
   "Ready to go!": "Ready to go!",
   "Please refill.": "Please refill.",
   "last watered": "last watered",
-  "is happy": "is happy",
+  "happy": "happy",
+  "cold": "cold",
+  "hot": "hot",
+  "damp": "damp",
+  "dry": "dry",
+  "gloomy": "gloomy",
+  "blinded": "blinded",
+  "and": "and",
 };

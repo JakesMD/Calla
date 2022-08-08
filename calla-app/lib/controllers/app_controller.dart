@@ -33,10 +33,11 @@ class AppCtl extends GetxController {
       name: "Jack",
       species: "Lily",
       lastWatered: DateTime.now(),
+      isOff: true,
     ),
   ];
 
-  final RxDouble _waterLevel = 1.0.obs;
+  final RxDouble _waterLevel = 0.25.obs;
   final RxDouble _light = 0.75.obs;
   final RxDouble _temperature = 25.0.obs;
   final RxDouble _humidity = 0.5.obs;

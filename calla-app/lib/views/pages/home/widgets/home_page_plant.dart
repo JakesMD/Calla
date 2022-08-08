@@ -93,19 +93,28 @@ class MyHomePagePlant extends StatelessWidget {
                 children: [
                   Expanded(
                     child: RichText(
+                      overflow: TextOverflow.ellipsis,
                       text: TextSpan(
                         text: plant.name,
                         style: MyTextTheme.headline2,
                         children: [
                           TextSpan(
-                            text: " ${"is ${plant.generateMood()}".tr}",
-                            style: MyTextTheme.headline3,
+                            text: plant.isOff
+                                ? " ${"is off".tr}"
+                                : " ${"is ${plant.generateMoodPhrase()}".tr}",
+                            style: MyTextTheme.bodyText1,
                           ),
                         ],
                       ),
                     ),
                   ),
-                  const MyIcon(Icons.sentiment_satisfied_alt_outlined),
+                  MyIcon(
+                    plant.isOff
+                        ? Icons.power_off_outlined
+                        : plant.generateMoods().contains(PlantMood.happy)
+                            ? Icons.sentiment_satisfied_alt_outlined
+                            : Icons.sentiment_dissatisfied_outlined,
+                  ),
                 ],
               ),
 
@@ -121,7 +130,7 @@ class MyHomePagePlant extends StatelessWidget {
               MySpacedRow(
                 children: [
                   Expanded(
-                    child: plant.lastWatered != null
+                    child: !plant.isOff && plant.lastWatered != null
                         ? Text(
                             "${"last watered".tr}: ${DateFormat.MMMd().format(plant.lastWatered!)}, ${DateFormat.Hm().format(plant.lastWatered!)}",
                             style: MyTextTheme.bodyText2,

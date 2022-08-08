@@ -23,7 +23,11 @@ class MyHomePageSensorReadingSection extends StatelessWidget {
                 // Light:
                 MyHomePageSensorReading(
                   text: "${(AppCtl.to.light * 100).toInt()}%",
-                  icon: CupertinoIcons.sun_max,
+                  icon: AppCtl.to.light >= 0.75
+                      ? CupertinoIcons.sun_max
+                      : AppCtl.to.light >= 0.25
+                          ? CupertinoIcons.sun_min
+                          : CupertinoIcons.moon,
                   percent: AppCtl.to.light,
                   color: AppCtl.to.colors.purple,
                 ),
@@ -32,7 +36,11 @@ class MyHomePageSensorReadingSection extends StatelessWidget {
                 // Temperature:
                 MyHomePageSensorReading(
                   text: "${AppCtl.to.temperature.toInt()}°C",
-                  icon: CupertinoIcons.thermometer,
+                  icon: AppCtl.to.temperature > 20
+                      ? CupertinoIcons.thermometer_sun
+                      : AppCtl.to.temperature > 0
+                          ? CupertinoIcons.thermometer
+                          : CupertinoIcons.thermometer_snowflake,
                   percent: 1,
                   color: AppCtl.to.colors.orange,
                 ),
