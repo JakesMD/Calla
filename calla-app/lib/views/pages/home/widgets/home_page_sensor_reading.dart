@@ -3,6 +3,7 @@ import 'package:calla/views/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
+/// A [CircularPercentIndicator] with a [MyIcon] and the value as [Text] below that represent a sensor reading.
 class MyHomePageSensorReading extends StatelessWidget {
   final String text;
   final IconData icon;

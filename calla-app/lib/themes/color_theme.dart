@@ -26,7 +26,7 @@ class MyColorTheme {
         background: const Color(0xFFFFFFFF),
         green: const Color(0xFFCDE885),
         orange: const Color(0xFFFFD182),
-        blue: const Color(0xFFAEFFE4),
+        blue: const Color(0xFFAEE7FF),
         purple: const Color(0xFFB3BAE8),
         pink: const Color(0xFFFFBCF6),
       );
@@ -37,7 +37,7 @@ class MyColorTheme {
         background: const Color(0xFFFFFFFF),
         green: const Color(0xFFCDE885),
         orange: const Color(0xFFFFD182),
-        blue: const Color(0xFFAEFFE4),
+        blue: const Color(0xFFAEE7FF),
         purple: const Color(0xFFB3BAE8),
         pink: const Color(0xFFFFBCF6),
       );
