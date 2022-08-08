@@ -23,11 +23,6 @@ final TextTheme MyTextTheme = GoogleFonts.poppinsTextTheme(
       color: AppCtl.to.colors.text,
     ),
     headline4: TextStyle(
-      fontSize: 16,
-      fontWeight: FontWeight.w500,
-      color: AppCtl.to.colors.text,
-    ),
-    headline5: TextStyle(
       fontSize: 14,
       fontWeight: FontWeight.normal,
       color: AppCtl.to.colors.text,

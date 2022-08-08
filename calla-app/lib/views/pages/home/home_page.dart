@@ -9,15 +9,17 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: SafeArea(
+        bottom: false,
         child: SingleChildScrollView(
           padding: EdgeInsets.symmetric(vertical: MySizeTheme.pageMargin),
           physics: BouncingScrollPhysics(),
           child: MySpacedColumn(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            spacing: MySizeTheme.spacing25,
+            spacing: MySizeTheme.spacing50,
             children: [
               MyHomePageAppBar(),
               MyHomePageSensorReadingSection(),
+              MyHomePagePlantSection(),
             ],
           ),
         ),

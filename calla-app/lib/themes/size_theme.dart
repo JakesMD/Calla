@@ -5,7 +5,9 @@ class MySizeTheme {
   static const double buttonHeight = 45;
 
   // Spacings
+  static const double spacing50 = 50;
   static const double spacing25 = 25;
+  static const double spacing20 = 20;
   static const double spacing15 = 15;
   static const double spacing10 = 10;
   static const double spacing5 = 5;
