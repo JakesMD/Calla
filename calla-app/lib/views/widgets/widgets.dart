@@ -11,6 +11,7 @@ export 'clickable.dart';
 export 'icon.dart';
 export 'circular_icon_button.dart';
 export 'file_image.dart';
+export 'app_bar.dart';
 
 // views/pages/home/widgets/
 export '../pages/home/widgets/home_page_app_bar.dart';
