@@ -23,6 +23,7 @@ dependencies:
       url: https://github.com/TechDevSubhopriyo/liquid_progress_indicator.git
       ref: master # branch name
   intl: ^0.17.0
+  flutter_feather_icons: ^2.0.0+1
 
 
 dev_dependencies:

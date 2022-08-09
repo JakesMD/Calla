@@ -19,6 +19,7 @@ class MySizeTheme {
   // Border radii
   static const double borderRadius30 = 30;
   static const double borderRadius15 = 15;
+  static const double borderRadius10 = 10;
 
   // Icon sizes
   static const double icon25 = 25;

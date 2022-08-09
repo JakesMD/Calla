@@ -25,7 +25,15 @@ class PlantModel {
   double preferredTemperatureMax;
   double preferredHumidityMin;
   double preferredHumidityMax;
+
+  /// This represents the moisture percentage if [wateringSchedule] is 0
+  /// and the amount of water in ml if [waterSchedule] is > 0.
   double preferredWater;
+
+  /// The hourly schedule to water the plant.
+  ///
+  /// If 0, it will water the plant by soil moisture.
+  int wateringSchedule;
   bool isOff;
 
   PlantModel({
@@ -41,6 +49,7 @@ class PlantModel {
     this.preferredLightMin = 0.5,
     this.preferredLightMax = 1,
     this.preferredWater = 0.5,
+    this.wateringSchedule = 0,
     this.isOff = false,
   });
 
