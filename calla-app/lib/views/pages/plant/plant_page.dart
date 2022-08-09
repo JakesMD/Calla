@@ -11,8 +11,6 @@ class PlantPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final plant = PlantPageCtl.to.plant;
-
     return Scaffold(
       body: Obx(
         () => MySpacedColumn(
@@ -21,7 +19,7 @@ class PlantPage extends StatelessWidget {
             Stack(
               children: [
                 MyFileImage(
-                  plant.photoPath,
+                  PlantPageCtl.to.plant.photoPath,
                   height: 250,
                   width: Get.width,
                   borderRadius: const BorderRadius.only(
@@ -35,7 +33,9 @@ class PlantPage extends StatelessWidget {
                     child: MyAppBar(
                       leftIcon: FeatherIcons.chevronLeft,
                       onLeftIconTap: Get.back,
-                      rightIcon: plant.isOff ? Icons.power_outlined : Icons.power_off_outlined,
+                      rightIcon: PlantPageCtl.to.plant.isOff
+                          ? Icons.power_outlined
+                          : Icons.power_off_outlined,
                     ),
                   ),
                 ),

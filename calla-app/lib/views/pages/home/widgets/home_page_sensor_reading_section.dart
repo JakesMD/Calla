@@ -2,6 +2,7 @@ import 'package:calla/controllers/controllers.dart';
 import 'package:calla/themes/themes.dart';
 import 'package:calla/views/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 
 /// A row of 3 [MyHomePageSensorReading]s with a [MyIllustration].
@@ -23,11 +24,7 @@ class MyHomePageSensorReadingSection extends StatelessWidget {
                 // Light:
                 MyHomePageSensorReading(
                   text: "${(AppCtl.to.light * 100).toInt()}%",
-                  icon: AppCtl.to.light >= 0.75
-                      ? CupertinoIcons.sun_max
-                      : AppCtl.to.light >= 0.25
-                          ? CupertinoIcons.sun_min
-                          : CupertinoIcons.moon,
+                  icon: AppCtl.to.light >= 0.25 ? FeatherIcons.sun : FeatherIcons.moon,
                   percent: AppCtl.to.light,
                   color: AppCtl.to.colors.purple,
                 ),
@@ -36,18 +33,14 @@ class MyHomePageSensorReadingSection extends StatelessWidget {
                 // Temperature:
                 MyHomePageSensorReading(
                   text: "${AppCtl.to.temperature.toInt()}°C",
-                  icon: AppCtl.to.temperature > 20
-                      ? CupertinoIcons.thermometer_sun
-                      : AppCtl.to.temperature > 0
-                          ? CupertinoIcons.thermometer
-                          : CupertinoIcons.thermometer_snowflake,
+                  icon: FeatherIcons.thermometer,
                   percent: 1,
                   color: AppCtl.to.colors.orange,
                 ),
                 // Humidity:
                 MyHomePageSensorReading(
                   text: "${(AppCtl.to.humidity * 100).toInt()}%",
-                  icon: CupertinoIcons.drop,
+                  icon: FeatherIcons.droplet,
                   percent: 0.54,
                   color: AppCtl.to.colors.blue,
                 ),

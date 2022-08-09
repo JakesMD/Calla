@@ -24,7 +24,7 @@ class MyPlantPagePreferenceBoxSection extends StatelessWidget {
               Expanded(
                 child: MyPlantPagePreferenceBox(
                   color: AppCtl.to.colors.green,
-                  icon: FeatherIcons.cloudRain,
+                  icon: FeatherIcons.cloudDrizzle,
                   headline: "WATER",
                   text: plant.wateringSchedule > 0
                       ? "${(plant.preferredWater).toInt()}ml / ${plant.wateringSchedule}h"
