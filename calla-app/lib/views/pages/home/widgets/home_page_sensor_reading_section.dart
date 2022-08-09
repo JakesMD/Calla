@@ -41,7 +41,7 @@ class MyHomePageSensorReadingSection extends StatelessWidget {
                 MyHomePageSensorReading(
                   text: "${(AppCtl.to.humidity * 100).toInt()}%",
                   icon: FeatherIcons.droplet,
-                  percent: 0.54,
+                  percent: AppCtl.to.humidity,
                   color: AppCtl.to.colors.blue,
                 ),
               ],

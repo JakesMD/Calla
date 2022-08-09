@@ -1,4 +1,5 @@
 import 'package:calla/controllers/app_controller.dart';
+import 'package:calla/services/file_service.dart';
 import 'package:get/get.dart';
 
 /// A mood given to a plant depending on the conditions of its environment.
@@ -40,8 +41,8 @@ class PlantModel {
     required this.number,
     required this.name,
     required this.species,
+    this.photoPath = "",
     this.lastWatered,
-    this.photoPath = '',
     this.preferredHumidityMin = 0.4,
     this.preferredHumidityMax = 0.7,
     this.preferredTemperatureMin = 20,
@@ -126,4 +127,6 @@ class PlantModel {
       isOff: isOff ?? this.isOff,
     );
   }
+
+  String fullPhotoPath() => photoPath.isNotEmpty ? "${FileSvc.to.documentsDirPath}/$photoPath" : "";
 }

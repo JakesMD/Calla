@@ -16,7 +16,7 @@ class AppCtl extends GetxController {
   final Rx<MyColorTheme> _colors =
       Get.isDarkMode ? MyColorTheme.dark().obs : MyColorTheme.light().obs;
 
-  final List<PlantModel> plants = [
+  final RxList<PlantModel> plants = [
     PlantModel(
       number: 1,
       name: "Katie",
@@ -38,7 +38,7 @@ class AppCtl extends GetxController {
       lastWatered: DateTime.now(),
       isOff: true,
     ),
-  ];
+  ].obs;
 
   final RxDouble _waterLevel = 0.25.obs;
   final RxDouble _light = 0.75.obs;
@@ -75,5 +75,10 @@ class AppCtl extends GetxController {
       enterBottomSheetDuration: MyDurationTheme.m250,
       exitBottomSheetDuration: MyDurationTheme.m250,
     );
+  }
+
+  /// Saves the edited plant from the [PlantPage].
+  void savePlant() {
+    plants[PlantPageCtl.to.plant.number - 1] = PlantPageCtl.to.plant;
   }
 }

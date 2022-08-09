@@ -19,7 +19,7 @@ class PlantPage extends StatelessWidget {
             Stack(
               children: [
                 MyFileImage(
-                  PlantPageCtl.to.plant.photoPath,
+                  PlantPageCtl.to.plant.fullPhotoPath(),
                   height: 250,
                   width: Get.width,
                   borderRadius: const BorderRadius.only(

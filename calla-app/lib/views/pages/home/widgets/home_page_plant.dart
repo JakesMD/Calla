@@ -2,7 +2,6 @@ import 'package:calla/controllers/app_controller.dart';
 import 'package:calla/models/plant_model.dart';
 import 'package:calla/themes/themes.dart';
 import 'package:calla/views/widgets/widgets.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:intl/intl.dart';
@@ -77,7 +76,7 @@ class MyHomePagePlant extends StatelessWidget {
       _borderedContainer(
         curveOnLeft: isFlipped,
         width: 100,
-        child: MyFileImage(plant.photoPath),
+        child: MyFileImage(plant.fullPhotoPath()),
       ),
 
       // Plant:

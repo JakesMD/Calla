@@ -1,7 +1,11 @@
 import 'package:calla/controllers/plant_page_controller.dart';
+import 'package:calla/services/file_service.dart';
 import 'package:calla/themes/themes.dart';
 import 'package:calla/views/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:get/get.dart';
 
 /// The bottom sheet that edits a plant's name, species and photo.
 class MyPlantPageEditProfileSheet extends StatelessWidget {
@@ -13,12 +17,36 @@ class MyPlantPageEditProfileSheet extends StatelessWidget {
       onSave: PlantPageCtl.to.saveProfile,
       child: MySpacedColumn(
         children: [
-          LayoutBuilder(
-            builder: (_, constraints) => MyFileImage(
-              PlantPageCtl.to.tempPhotoPath,
-              height: 100,
-              width: constraints.maxWidth,
-              borderRadius: BorderRadius.circular(MySizeTheme.borderRadius15),
+          SizedBox(
+            height: 100,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Positioned.fill(
+                  child: Obx(
+                    () => MyFileImage(
+                      FileSvc.to.tempImagePath,
+                      opacity: 0.5,
+                      borderRadius: BorderRadius.circular(MySizeTheme.borderRadius15),
+                    ),
+                  ),
+                ),
+                Positioned.fill(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      MyCircularIconButton(
+                        FeatherIcons.camera,
+                        onTap: () => FileSvc.to.pickTempImage(ImageSource.camera),
+                      ),
+                      MyCircularIconButton(
+                        Icons.photo_library_outlined,
+                        onTap: () => FileSvc.to.pickTempImage(ImageSource.gallery),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
           MyTextField(

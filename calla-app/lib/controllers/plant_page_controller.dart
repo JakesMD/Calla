@@ -1,4 +1,6 @@
+import 'package:calla/controllers/app_controller.dart';
 import 'package:calla/models/plant_model.dart';
+import 'package:calla/services/file_service.dart';
 import 'package:calla/views/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,16 +13,11 @@ class PlantPageCtl extends GetxController {
   final nameController = TextEditingController();
   final speciesController = TextEditingController();
 
-  final Rx<String> _tempPhotoPath = "".obs;
-
   final Rx<PlantModel> _plant = PlantModel(
     number: 0,
     name: "",
     species: "",
   ).obs;
-
-  /// A the path of the temp photo on the [MyPlantPageEditProfileSheet].
-  String get tempPhotoPath => _tempPhotoPath.value;
 
   PlantModel get plant => _plant.value;
   set plant(PlantModel newPlant) => _plant.value = newPlant;
@@ -28,18 +25,19 @@ class PlantPageCtl extends GetxController {
   /// Toggles and saves the [isOff] feature.
   void togglePower() {
     _plant.value = _plant.value.copyWith(isOff: !_plant.value.isOff);
+    AppCtl.to.savePlant();
   }
 
-  /// Loads the name, species and photo path into the controller and opens the bottom sheet.
+  /// Loads the name, species the controllers, copies the photo to the temp file and opens the bottom sheet.
   void openEditProfileSheet() {
     nameController.text = _plant.value.name;
     speciesController.text = _plant.value.species;
-    _tempPhotoPath.value = _plant.value.photoPath;
+    FileSvc.to.tempImagePath = _plant.value.fullPhotoPath();
     Get.bottomSheet(const MyPlantPageEditProfileSheet());
   }
 
   /// Save the settings from the [MyPlantPageEditProfileSheet].
-  void saveProfile() {
+  void saveProfile() async {
     if (nameController.text.isNotEmpty) {
       _plant.value.name = nameController.text.trim();
     }
@@ -50,6 +48,8 @@ class PlantPageCtl extends GetxController {
     _plant.value = _plant.value.copyWith(
       name: _plant.value.name,
       species: _plant.value.species,
+      photoPath: await FileSvc.to.saveTempImage(),
     );
+    AppCtl.to.savePlant();
   }
 }
