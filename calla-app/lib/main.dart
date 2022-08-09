@@ -11,6 +11,7 @@ void main() async {
 
   // Initialize the services.
   await Get.putAsync(() => AssetSvc().init());
+  await Get.putAsync(() => PrefsSvc().init());
   await Get.putAsync(() => FileSvc().init());
 
   // Initialize the controllers.

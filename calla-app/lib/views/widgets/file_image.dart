@@ -29,6 +29,8 @@ class MyFileImage extends StatelessWidget {
       opacity: opacity,
       child: Container(
         clipBehavior: Clip.hardEdge,
+        width: width,
+        height: height,
         decoration: BoxDecoration(borderRadius: borderRadius),
         child: path.isNotEmpty
             ? Image.file(

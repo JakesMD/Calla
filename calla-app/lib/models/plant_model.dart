@@ -1,4 +1,5 @@
 import 'package:calla/controllers/app_controller.dart';
+import 'package:calla/helpers/range.dart';
 import 'package:calla/services/file_service.dart';
 import 'package:get/get.dart';
 
@@ -20,12 +21,9 @@ class PlantModel {
   String species;
   String photoPath;
   DateTime? lastWatered;
-  double preferredLightMin;
-  double preferredLightMax;
-  double preferredTemperatureMin;
-  double preferredTemperatureMax;
-  double preferredHumidityMin;
-  double preferredHumidityMax;
+  Range preferredLight;
+  Range preferredTemperature;
+  Range preferredHumidity;
 
   /// This represents the moisture percentage if [wateringSchedule] is 0
   /// and the amount of water in ml if [waterSchedule] is > 0.
@@ -43,12 +41,9 @@ class PlantModel {
     required this.species,
     this.photoPath = "",
     this.lastWatered,
-    this.preferredHumidityMin = 0.4,
-    this.preferredHumidityMax = 0.7,
-    this.preferredTemperatureMin = 20,
-    this.preferredTemperatureMax = 30,
-    this.preferredLightMin = 0.5,
-    this.preferredLightMax = 1,
+    this.preferredLight = const Range(0.5, 1),
+    this.preferredTemperature = const Range(15, 25),
+    this.preferredHumidity = const Range(0.45, 0.75),
     this.preferredWater = 0.5,
     this.wateringSchedule = 0,
     this.isOff = false,
@@ -58,19 +53,19 @@ class PlantModel {
   List<PlantMood> generateMoods() {
     var moods = <PlantMood>[];
 
-    if (AppCtl.to.humidity < preferredHumidityMin) {
+    if (AppCtl.to.humidity < preferredHumidity.min) {
       moods.add(PlantMood.dry);
-    } else if (AppCtl.to.humidity > preferredHumidityMax) {
+    } else if (AppCtl.to.humidity > preferredHumidity.max) {
       moods.add(PlantMood.damp);
     }
-    if (AppCtl.to.temperature < preferredTemperatureMin) {
+    if (AppCtl.to.temperature < preferredTemperature.min) {
       moods.add(PlantMood.cold);
-    } else if (AppCtl.to.temperature > preferredTemperatureMax) {
+    } else if (AppCtl.to.temperature > preferredTemperature.max) {
       moods.add(PlantMood.hot);
     }
-    if (AppCtl.to.light < preferredLightMin) {
+    if (AppCtl.to.light < preferredLight.min) {
       moods.add(PlantMood.gloomy);
-    } else if (AppCtl.to.light > preferredLightMax) {
+    } else if (AppCtl.to.light > preferredLight.max) {
       moods.add(PlantMood.blinded);
     }
     if (moods.isEmpty) {
@@ -78,6 +73,8 @@ class PlantModel {
     }
     return moods;
   }
+
+  String fullPhotoPath() => photoPath.isNotEmpty ? "${FileSvc.to.documentsDirPath}/$photoPath" : "";
 
   /// Generates a readable text from calculated moods.
   String generateMoodPhrase() {
@@ -95,17 +92,49 @@ class PlantModel {
     return phrase;
   }
 
+  PlantModel.fromJson(Map<String, dynamic> json)
+      : number = json['number'],
+        name = json['name'] ?? "Plant${json['number']}",
+        species = json['species'] ?? "",
+        photoPath = json['photoPath'] ?? "",
+        lastWatered = null,
+        preferredLight = Range(
+          json['preferredLight'] != null ? json['preferredLight'][0] : 0.5,
+          json['preferredLight'] != null ? json['preferredLight'][1] : 1,
+        ),
+        preferredTemperature = Range(
+          json['preferredTemperature'] != null ? json['preferredTemperature'][0] : 15,
+          json['preferredTemperature'] != null ? json['preferredTemperature'][1] : 25,
+        ),
+        preferredHumidity = Range(
+          json['preferredHumidity'] != null ? json['preferredHumidity'][0] : 0.45,
+          json['preferredHumidity'] != null ? json['preferredHumidity'][1] : 0.75,
+        ),
+        preferredWater = json['preferredWater'] ?? 0.5,
+        wateringSchedule = json['wateringSchedule'] ?? 0,
+        isOff = json['isOff'] ?? false;
+
+  Map<String, dynamic> toJson() => {
+        'number': number,
+        'name': name,
+        'species': species,
+        'photoPath': photoPath,
+        'preferredLight': [preferredLight.min, preferredLight.max],
+        'preferredTemperature': [preferredTemperature.min, preferredTemperature.max],
+        'preferredHumidity': [preferredHumidity.min, preferredHumidity.max],
+        'preferredWater': preferredWater,
+        'wateringSchedule': wateringSchedule,
+        'isOff': isOff,
+      };
+
   PlantModel copyWith({
     String? name,
     String? species,
     String? photoPath,
     DateTime? lastWatered,
-    double? preferredLightMin,
-    double? preferredLightMax,
-    double? preferredTemperatureMin,
-    double? preferredTemperatureMax,
-    double? preferredHumidityMin,
-    double? preferredHumidityMax,
+    Range? preferredLight,
+    Range? preferredTemperature,
+    Range? preferredHumidity,
     double? preferredWater,
     int? wateringSchedule,
     bool? isOff,
@@ -116,17 +145,12 @@ class PlantModel {
       species: species ?? this.species,
       photoPath: photoPath ?? this.photoPath,
       lastWatered: lastWatered ?? this.lastWatered,
-      preferredLightMin: preferredLightMin ?? this.preferredLightMin,
-      preferredLightMax: preferredLightMax ?? this.preferredLightMax,
-      preferredTemperatureMin: preferredTemperatureMin ?? this.preferredTemperatureMin,
-      preferredTemperatureMax: preferredTemperatureMax ?? this.preferredTemperatureMax,
-      preferredHumidityMin: preferredHumidityMin ?? this.preferredHumidityMin,
-      preferredHumidityMax: preferredHumidityMax ?? this.preferredHumidityMax,
+      preferredLight: preferredLight ?? this.preferredLight,
+      preferredTemperature: preferredTemperature ?? this.preferredTemperature,
+      preferredHumidity: preferredHumidity ?? this.preferredHumidity,
       preferredWater: preferredWater ?? this.preferredWater,
       wateringSchedule: wateringSchedule ?? this.wateringSchedule,
       isOff: isOff ?? this.isOff,
     );
   }
-
-  String fullPhotoPath() => photoPath.isNotEmpty ? "${FileSvc.to.documentsDirPath}/$photoPath" : "";
 }

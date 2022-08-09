@@ -1,6 +1,7 @@
 import 'package:calla/constants/constants.dart';
 import 'package:calla/controllers/controllers.dart';
 import 'package:calla/models/models.dart';
+import 'package:calla/services/services.dart';
 import 'package:calla/themes/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -17,27 +18,9 @@ class AppCtl extends GetxController {
       Get.isDarkMode ? MyColorTheme.dark().obs : MyColorTheme.light().obs;
 
   final RxList<PlantModel> plants = [
-    PlantModel(
-      number: 1,
-      name: "Katie",
-      species: "Calla Lily",
-      lastWatered: DateTime.now(),
-    ),
-    PlantModel(
-      number: 2,
-      name: "Kathi",
-      species: "Cactus",
-      lastWatered: DateTime.now(),
-      preferredHumidityMax: 0.49,
-      preferredTemperatureMin: 30,
-    ),
-    PlantModel(
-      number: 3,
-      name: "Tim",
-      species: "Tulip",
-      lastWatered: DateTime.now(),
-      isOff: true,
-    ),
+    PrefsSvc.to.plant1,
+    PrefsSvc.to.plant2,
+    PrefsSvc.to.plant3,
   ].obs;
 
   final RxDouble _waterLevel = 0.25.obs;
@@ -80,5 +63,6 @@ class AppCtl extends GetxController {
   /// Saves the edited plant from the [PlantPage].
   void savePlant() {
     plants[PlantPageCtl.to.plant.number - 1] = PlantPageCtl.to.plant;
+    PrefsSvc.to.savePlant(PlantPageCtl.to.plant);
   }
 }

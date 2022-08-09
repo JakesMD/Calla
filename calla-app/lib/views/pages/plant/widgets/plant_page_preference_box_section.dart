@@ -38,7 +38,7 @@ class MyPlantPagePreferenceBoxSection extends StatelessWidget {
                   icon: FeatherIcons.sun,
                   headline: "LIGHT",
                   text:
-                      "${(plant.preferredLightMin * 100).toInt()} - ${(plant.preferredLightMax * 100).toInt()}%",
+                      "${(plant.preferredLight.min * 100).toInt()} - ${(plant.preferredLight.max * 100).toInt()}%",
                 ),
               ),
             ],
@@ -52,7 +52,7 @@ class MyPlantPagePreferenceBoxSection extends StatelessWidget {
                   icon: FeatherIcons.thermometer,
                   headline: "TEMPERATURE",
                   text:
-                      "${plant.preferredTemperatureMin.toInt()} - ${plant.preferredTemperatureMax.toInt()}°C",
+                      "${plant.preferredTemperature.min.toInt()} - ${plant.preferredTemperature.max.toInt()}°C",
                 ),
               ),
               // Humidity:
@@ -62,7 +62,7 @@ class MyPlantPagePreferenceBoxSection extends StatelessWidget {
                   icon: FeatherIcons.droplet,
                   headline: "HUMIDITY",
                   text:
-                      "${(plant.preferredHumidityMin * 100).toInt()} - ${(plant.preferredHumidityMax * 100).toInt()}%",
+                      "${(plant.preferredHumidity.min * 100).toInt()} - ${(plant.preferredHumidity.max * 100).toInt()}%",
                 ),
               ),
             ],
