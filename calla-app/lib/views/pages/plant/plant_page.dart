@@ -36,6 +36,7 @@ class PlantPage extends StatelessWidget {
                       rightIcon: PlantPageCtl.to.plant.isOff
                           ? Icons.power_outlined
                           : Icons.power_off_outlined,
+                      onRightIconTap: PlantPageCtl.to.togglePower,
                     ),
                   ),
                 ),

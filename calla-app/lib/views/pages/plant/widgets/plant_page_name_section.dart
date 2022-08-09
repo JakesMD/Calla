@@ -26,7 +26,10 @@ class MyPlantPageNameSection extends StatelessWidget {
                   textAlign: TextAlign.start,
                 ),
               ),
-              const MyIcon(FeatherIcons.edit2),
+              MyIcon(
+                FeatherIcons.edit2,
+                onTap: PlantPageCtl.to.openEditProfileSheet,
+              ),
             ],
           ),
           Text(

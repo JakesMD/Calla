@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
                 physics: const BouncingScrollPhysics(),
                 child: MySpacedColumn(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
-                  spacing: MySizeTheme.spacing25,
+                  spacing: MySizeTheme.spacing35,
                   children: [
                     const MyHomePageAppBar(),
                     const MyHomePageSensorReadingSection(),

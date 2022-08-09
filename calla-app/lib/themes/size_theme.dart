@@ -10,6 +10,7 @@ class MySizeTheme {
 
   // Spacings
   static const double spacing50 = 50;
+  static const double spacing35 = 35;
   static const double spacing25 = 25;
   static const double spacing20 = 20;
   static const double spacing15 = 15;

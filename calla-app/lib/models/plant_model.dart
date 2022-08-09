@@ -93,4 +93,37 @@ class PlantModel {
     }
     return phrase;
   }
+
+  PlantModel copyWith({
+    String? name,
+    String? species,
+    String? photoPath,
+    DateTime? lastWatered,
+    double? preferredLightMin,
+    double? preferredLightMax,
+    double? preferredTemperatureMin,
+    double? preferredTemperatureMax,
+    double? preferredHumidityMin,
+    double? preferredHumidityMax,
+    double? preferredWater,
+    int? wateringSchedule,
+    bool? isOff,
+  }) {
+    return PlantModel(
+      number: number,
+      name: name ?? this.name,
+      species: species ?? this.species,
+      photoPath: photoPath ?? this.photoPath,
+      lastWatered: lastWatered ?? this.lastWatered,
+      preferredLightMin: preferredLightMin ?? this.preferredLightMin,
+      preferredLightMax: preferredLightMax ?? this.preferredLightMax,
+      preferredTemperatureMin: preferredTemperatureMin ?? this.preferredTemperatureMin,
+      preferredTemperatureMax: preferredTemperatureMax ?? this.preferredTemperatureMax,
+      preferredHumidityMin: preferredHumidityMin ?? this.preferredHumidityMin,
+      preferredHumidityMax: preferredHumidityMax ?? this.preferredHumidityMax,
+      preferredWater: preferredWater ?? this.preferredWater,
+      wateringSchedule: wateringSchedule ?? this.wateringSchedule,
+      isOff: isOff ?? this.isOff,
+    );
+  }
 }

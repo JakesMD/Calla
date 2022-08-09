@@ -2,6 +2,7 @@ import 'package:calla/constants/constants.dart';
 import 'package:calla/controllers/controllers.dart';
 import 'package:calla/models/models.dart';
 import 'package:calla/themes/themes.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
@@ -18,20 +19,22 @@ class AppCtl extends GetxController {
   final List<PlantModel> plants = [
     PlantModel(
       number: 1,
-      name: "Jack",
-      species: "Lily",
+      name: "Katie",
+      species: "Calla Lily",
       lastWatered: DateTime.now(),
     ),
     PlantModel(
       number: 2,
-      name: "Jack",
-      species: "Lily",
+      name: "Kathi",
+      species: "Cactus",
       lastWatered: DateTime.now(),
+      preferredHumidityMax: 0.49,
+      preferredTemperatureMin: 30,
     ),
     PlantModel(
       number: 3,
-      name: "Jack",
-      species: "Lily",
+      name: "Tim",
+      species: "Tulip",
       lastWatered: DateTime.now(),
       isOff: true,
     ),
@@ -64,5 +67,13 @@ class AppCtl extends GetxController {
   void goToPlantPage(int plantNumber) {
     PlantPageCtl.to.plant = plants[plantNumber - 1];
     Get.toNamed(AppRoutes.plant);
+  }
+
+  void showBottomSheet(Widget bottomSheet) {
+    Get.bottomSheet(
+      bottomSheet,
+      enterBottomSheetDuration: MyDurationTheme.m250,
+      exitBottomSheetDuration: MyDurationTheme.m250,
+    );
   }
 }
