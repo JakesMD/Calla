@@ -26,15 +26,18 @@ class MyClickable extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(borderRadius ?? 0),
+      // For some reason setting the ink color makes it hide beneath everything else in a Stack.
       child: Ink(
         width: width,
         height: height,
-        padding: padding,
-        decoration: BoxDecoration(
-          color: color != null ? (onTap != null ? color : color!.withOpacity(0.5)) : null,
-          borderRadius: BorderRadius.circular(borderRadius ?? 0),
+        child: Container(
+          padding: padding,
+          decoration: BoxDecoration(
+            color: color,
+            borderRadius: BorderRadius.circular(borderRadius ?? 0),
+          ),
+          child: Center(child: child),
         ),
-        child: Center(child: child),
       ),
     );
   }

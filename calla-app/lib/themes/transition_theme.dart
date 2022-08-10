@@ -2,6 +2,8 @@ import 'package:calla/themes/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 
+// TODO: this doesn't seem to be working.
+
 /// The default rightToLeftWithFade transition for navigation.
 class MyPageTransition implements CustomTransition {
   @override

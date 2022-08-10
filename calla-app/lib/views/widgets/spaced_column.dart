@@ -28,7 +28,7 @@ class MySpacedColumn extends StatelessWidget {
       spacedChildren.add(SizedBox(height: spacing));
     }
     if (spacedChildren.isNotEmpty) {
-      spacedChildren.removeLast();
+      spacedChildren.removeLast(); // Removes the last spacer.
     }
 
     return Padding(

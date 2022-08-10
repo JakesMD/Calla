@@ -1,7 +1,9 @@
 import 'package:calla/constants/constants.dart';
 import 'package:calla/controllers/controllers.dart';
 import 'package:calla/models/models.dart';
+import 'package:calla/services/services.dart';
 import 'package:calla/themes/themes.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
@@ -15,29 +17,13 @@ class AppCtl extends GetxController {
   final Rx<MyColorTheme> _colors =
       Get.isDarkMode ? MyColorTheme.dark().obs : MyColorTheme.light().obs;
 
-  final List<PlantModel> plants = [
-    PlantModel(
-      number: 1,
-      name: "Jack",
-      species: "Lily",
-      lastWatered: DateTime.now(),
-    ),
-    PlantModel(
-      number: 2,
-      name: "Jack",
-      species: "Lily",
-      lastWatered: DateTime.now(),
-    ),
-    PlantModel(
-      number: 3,
-      name: "Jack",
-      species: "Lily",
-      lastWatered: DateTime.now(),
-      isOff: true,
-    ),
-  ];
+  final RxList<PlantModel> plants = [
+    PrefsSvc.to.plant1,
+    PrefsSvc.to.plant2,
+    PrefsSvc.to.plant3,
+  ].obs;
 
-  final RxDouble _waterLevel = 0.25.obs;
+  final RxDouble _waterLevel = 1.0.obs;
   final RxDouble _light = 0.75.obs;
   final RxDouble _temperature = 25.0.obs;
   final RxDouble _humidity = 0.5.obs;
@@ -61,8 +47,25 @@ class AppCtl extends GetxController {
     return this;
   }
 
+  /// Updates the [PlantPageCtl.to.plant] and navigates to the [PlantPage].
   void goToPlantPage(int plantNumber) {
     PlantPageCtl.to.plant = plants[plantNumber - 1];
+    PlantPageCtl.to.tempPlant = plants[plantNumber - 1];
     Get.toNamed(AppRoutes.plant);
+  }
+
+  /// Opens the given bottom sheet with custom preferences.
+  void showBottomSheet(Widget bottomSheet) {
+    Get.bottomSheet(
+      bottomSheet,
+      enterBottomSheetDuration: MyDurationTheme.m250,
+      exitBottomSheetDuration: MyDurationTheme.m250,
+    );
+  }
+
+  /// Updates the edited plant from the [PlantPage] and saves it to local storage.
+  void savePlant() {
+    plants[PlantPageCtl.to.plant.number - 1] = PlantPageCtl.to.plant;
+    PrefsSvc.to.savePlant(PlantPageCtl.to.plant);
   }
 }

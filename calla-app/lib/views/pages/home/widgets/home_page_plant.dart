@@ -2,12 +2,12 @@ import 'package:calla/controllers/app_controller.dart';
 import 'package:calla/models/plant_model.dart';
 import 'package:calla/themes/themes.dart';
 import 'package:calla/views/widgets/widgets.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:intl/intl.dart';
 import 'package:get/get.dart';
 
-/// A representation of a [PlantModel].
+/// A representation of a plant.
 class MyHomePagePlant extends StatelessWidget {
   final PlantModel plant;
   final Color color;
@@ -76,7 +76,7 @@ class MyHomePagePlant extends StatelessWidget {
       _borderedContainer(
         curveOnLeft: isFlipped,
         width: 100,
-        child: MyFileImage(plant.photoPath),
+        child: MyFileImage(plant.fullPhotoPath()),
       ),
 
       // Plant:
@@ -112,8 +112,8 @@ class MyHomePagePlant extends StatelessWidget {
                     plant.isOff
                         ? Icons.power_off_outlined
                         : plant.generateMoods().contains(PlantMood.happy)
-                            ? Icons.sentiment_satisfied_alt_outlined
-                            : Icons.sentiment_dissatisfied_outlined,
+                            ? FeatherIcons.smile
+                            : FeatherIcons.frown,
                   ),
                 ],
               ),
@@ -122,6 +122,7 @@ class MyHomePagePlant extends StatelessWidget {
               Text(
                 plant.species,
                 style: MyTextTheme.bodyText1,
+                overflow: TextOverflow.ellipsis,
               ),
 
               const Spacer(),
@@ -139,7 +140,7 @@ class MyHomePagePlant extends StatelessWidget {
                         : Container(),
                   ),
                   MyIcon(
-                    CupertinoIcons.arrow_right,
+                    FeatherIcons.arrowRight,
                     onTap: () => AppCtl.to.goToPlantPage(plant.number),
                   )
                 ],

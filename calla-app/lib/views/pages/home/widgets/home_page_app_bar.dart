@@ -1,6 +1,7 @@
 import 'package:calla/themes/themes.dart';
 import 'package:calla/views/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 
 /// The app bar at the top of the [HomePage].
@@ -18,7 +19,7 @@ class MyHomePageAppBar extends StatelessWidget {
             style: MyTextTheme.headline1,
           ),
         ),
-        const MyCircularIconButton(CupertinoIcons.gear),
+        const MyCircularIconButton(FeatherIcons.settings),
       ],
     );
   }

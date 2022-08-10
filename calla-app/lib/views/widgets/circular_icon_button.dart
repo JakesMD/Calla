@@ -16,7 +16,7 @@ class MyCircularIconButton extends StatelessWidget {
       height: MySizeTheme.buttonHeight,
       width: MySizeTheme.buttonHeight,
       borderRadius: MySizeTheme.buttonHeight / 2,
-      color: AppCtl.to.colors.green.withOpacity(0.5),
+      color: AppCtl.to.colors.green,
       onTap: onTap,
       child: MyIcon(icon),
     );
