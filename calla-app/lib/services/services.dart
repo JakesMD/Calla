@@ -5,3 +5,4 @@ export 'localization_service.dart';
 export 'asset_service.dart';
 export 'file_service.dart';
 export 'prefs_service.dart';
+export 'bluetooth_service.dart';

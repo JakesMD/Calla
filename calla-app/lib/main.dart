@@ -13,6 +13,7 @@ void main() async {
   await Get.putAsync(() => AssetSvc().init());
   await Get.putAsync(() => PrefsSvc().init());
   await Get.putAsync(() => FileSvc().init());
+  await Get.putAsync(() => BluetoothSvc().init());
 
   // Initialize the controllers.
   await Get.putAsync(() => AppCtl().init());
