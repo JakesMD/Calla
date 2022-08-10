@@ -4,10 +4,9 @@ import 'package:calla/controllers/app_controller.dart';
 import 'package:calla/views/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 
-// TODO: Add image with placeholder.
-
 /// A custom image.
 class MyFileImage extends StatelessWidget {
+  /// If "" the place holder will be shown.
   final String path;
   final double? width;
   final double? height;
@@ -45,6 +44,7 @@ class MyFileImage extends StatelessWidget {
     );
   }
 
+  /// A placeholder for when the file doesn't exist or an error has occured.
   Widget _placeHolder() {
     return Container(
       decoration: BoxDecoration(

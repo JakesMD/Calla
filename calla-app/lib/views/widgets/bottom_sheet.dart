@@ -29,18 +29,22 @@ class MyBottomSheet extends StatelessWidget {
       ),
       child: SafeArea(
         top: false,
-        child: MySpacedColumn(
-          spacing: MySizeTheme.spacing25,
-          children: [
-            child,
-            MyCircularIconButton(
-              FeatherIcons.save,
-              onTap: () {
-                if (onSave != null) onSave!();
-                Get.back();
-              },
-            ),
-          ],
+        // The scroll view solves any pixel overflow errors when the keyboard is up.
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: MySpacedColumn(
+            spacing: MySizeTheme.spacing25,
+            children: [
+              child,
+              MyCircularIconButton(
+                FeatherIcons.save,
+                onTap: () {
+                  if (onSave != null) onSave!();
+                  Get.back();
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

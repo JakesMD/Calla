@@ -13,10 +13,12 @@ class FileSvc extends GetxService {
   /// The instance of Uuid (a unique id generator used for file names).
   final _uuid = const Uuid();
 
+  /// The instance of [ImagePicker] (that picks images from the camera or gallery).
   final _imagePicker = ImagePicker();
 
   final Rx<String> _tempImagePath = "".obs;
 
+  /// The path of the app documents directory.
   late String documentsDirPath;
 
   /// The path of the temporary selected image.
@@ -25,6 +27,7 @@ class FileSvc extends GetxService {
 
   /// Initializes the [FileSvc] and returns an instance of it.
   Future<FileSvc> init() async {
+    // Fetch the path of the app documents directory.
     documentsDirPath = (await getApplicationDocumentsDirectory()).path;
     return this;
   }
@@ -32,10 +35,12 @@ class FileSvc extends GetxService {
   /// Picks an image from the source and save it to [tempImage];
   Future<bool> pickTempImage(ImageSource source) async {
     try {
+      // Pick an image from either the camera or gallery.
       final image = await _imagePicker.pickImage(source: source);
 
+      // Save the location of the image to the temp image.
       if (image != null) {
-        _tempImagePath.value = image.path;
+        tempImagePath = image.path;
       }
 
       return true;
@@ -45,12 +50,16 @@ class FileSvc extends GetxService {
     }
   }
 
-  /// Save [tempImage] to a perminant location in the application documents directory.
+  /// Save [tempImage] to a permanant location in the application documents directory.
   Future<String?> saveTempImage() async {
     try {
-      if (_tempImagePath.value.isNotEmpty && !_tempImagePath.startsWith(documentsDirPath)) {
-        final newPath = _uuid.v1();
+      // If there is a temp image and the temp image isn't already saved.
+      if (tempImagePath.isNotEmpty && !tempImagePath.startsWith(documentsDirPath)) {
+        final newPath = _uuid.v1(); // Create a unique id for the file.
+
+        // Copy the temporary file and save it to the new path.
         await File(_tempImagePath.value).copy("$documentsDirPath/$newPath");
+
         return newPath;
       }
       return null;

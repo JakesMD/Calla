@@ -23,7 +23,7 @@ class AppCtl extends GetxController {
     PrefsSvc.to.plant3,
   ].obs;
 
-  final RxDouble _waterLevel = 0.25.obs;
+  final RxDouble _waterLevel = 1.0.obs;
   final RxDouble _light = 0.75.obs;
   final RxDouble _temperature = 25.0.obs;
   final RxDouble _humidity = 0.5.obs;
@@ -47,11 +47,14 @@ class AppCtl extends GetxController {
     return this;
   }
 
+  /// Updates the [PlantPageCtl.to.plant] and navigates to the [PlantPage].
   void goToPlantPage(int plantNumber) {
     PlantPageCtl.to.plant = plants[plantNumber - 1];
+    PlantPageCtl.to.tempPlant = plants[plantNumber - 1];
     Get.toNamed(AppRoutes.plant);
   }
 
+  /// Opens the given bottom sheet with custom preferences.
   void showBottomSheet(Widget bottomSheet) {
     Get.bottomSheet(
       bottomSheet,
@@ -60,7 +63,7 @@ class AppCtl extends GetxController {
     );
   }
 
-  /// Saves the edited plant from the [PlantPage].
+  /// Updates the edited plant from the [PlantPage] and saves it to local storage.
   void savePlant() {
     plants[PlantPageCtl.to.plant.number - 1] = PlantPageCtl.to.plant;
     PrefsSvc.to.savePlant(PlantPageCtl.to.plant);

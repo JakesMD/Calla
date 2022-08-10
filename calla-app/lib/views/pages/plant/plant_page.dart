@@ -12,14 +12,17 @@ class PlantPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Obx(
-        () => MySpacedColumn(
+      body: Obx(() {
+        final plant = PlantPageCtl.to.plant;
+
+        return MySpacedColumn(
           spacing: MySizeTheme.spacing25,
           children: [
             Stack(
               children: [
+                // Photo:
                 MyFileImage(
-                  PlantPageCtl.to.plant.fullPhotoPath(),
+                  plant.fullPhotoPath(),
                   height: 250,
                   width: Get.width,
                   borderRadius: const BorderRadius.only(
@@ -27,15 +30,15 @@ class PlantPage extends StatelessWidget {
                     bottomRight: Radius.circular(MySizeTheme.borderRadius30),
                   ),
                 ),
+
+                // AppBar:
                 SafeArea(
                   child: Padding(
                     padding: const EdgeInsets.all(MySizeTheme.pageMargin),
                     child: MyAppBar(
                       leftIcon: FeatherIcons.chevronLeft,
                       onLeftIconTap: Get.back,
-                      rightIcon: PlantPageCtl.to.plant.isOff
-                          ? Icons.power_outlined
-                          : Icons.power_off_outlined,
+                      rightIcon: plant.isOff ? Icons.power_outlined : Icons.power_off_outlined,
                       onRightIconTap: PlantPageCtl.to.togglePower,
                     ),
                   ),
@@ -45,8 +48,8 @@ class PlantPage extends StatelessWidget {
             const MyPlantPageNameSection(),
             const MyPlantPagePreferenceBoxSection(),
           ],
-        ),
-      ),
+        );
+      }),
     );
   }
 }

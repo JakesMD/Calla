@@ -7,14 +7,14 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:get/get.dart';
 
-/// The bottom sheet that edits a plant's name, species and photo.
+/// The bottom sheet that edits the plant's name, species and photo.
 class MyPlantPageEditProfileSheet extends StatelessWidget {
   const MyPlantPageEditProfileSheet({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MyBottomSheet(
-      onSave: PlantPageCtl.to.saveProfile,
+      onSave: () => PlantPageCtl.to.savePlant(savePhoto: true),
       child: MySpacedColumn(
         children: [
           SizedBox(
@@ -50,12 +50,12 @@ class MyPlantPageEditProfileSheet extends StatelessWidget {
             ),
           ),
           MyTextField(
-            hintText: "Name",
+            hintText: "Name".tr,
             icon: Icons.title_outlined,
             controller: PlantPageCtl.to.nameController,
           ),
           MyTextField(
-            hintText: "Species",
+            hintText: "Species".tr,
             icon: Icons.grass_outlined,
             controller: PlantPageCtl.to.speciesController,
           ),

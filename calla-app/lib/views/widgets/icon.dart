@@ -31,6 +31,7 @@ class MyIcon extends StatelessWidget {
       child: MyAnimatedSwitcher(
           child: Icon(
         icon,
+        // Animate the Icon if any of the parameters change.
         key: Key("$icon$color$size$onTap"),
         color: color ?? AppCtl.to.colors.text,
         size: size,

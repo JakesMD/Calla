@@ -2,6 +2,7 @@
 
 /// The translations for American English.
 const en_US = <String, String>{
+  // HomePage:
   "Hi there!": "Hi there!",
   "full": "full",
   "Ready to go!": "Ready to go!",
@@ -15,4 +16,14 @@ const en_US = <String, String>{
   "gloomy": "gloomy",
   "blinded": "blinded",
   "and": "and",
+
+  // PlantPage:
+  "WATER": "WATER",
+  "LIGHT": "LIGHT",
+  "TEMPERATURE": "TEMPERATURE",
+  "HUMIDITY": "HUMIDITY",
+  "Auto": "Auto",
+  "Scheduled": "Scheduled",
+  "Name": "Name",
+  "Species": "Species",
 };

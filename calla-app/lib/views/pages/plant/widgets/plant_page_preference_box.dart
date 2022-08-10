@@ -7,8 +7,9 @@ class MyPlantPagePreferenceBox extends StatelessWidget {
   final IconData icon;
   final String headline;
   final String text;
-  final String trailingText;
+  final String suffixText;
   final Color color;
+  final Function()? onTap;
 
   const MyPlantPagePreferenceBox({
     Key? key,
@@ -16,17 +17,17 @@ class MyPlantPagePreferenceBox extends StatelessWidget {
     required this.headline,
     required this.text,
     required this.color,
-    this.trailingText = "",
+    this.suffixText = "",
+    this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return MyClickable(
       height: 80,
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(MySizeTheme.borderRadius10),
-      ),
+      color: color,
+      borderRadius: MySizeTheme.borderRadius10,
+      onTap: onTap,
       child: MySpacedRow(
         padding: const EdgeInsets.all(MySizeTheme.spacing15),
         children: [
@@ -41,7 +42,7 @@ class MyPlantPagePreferenceBox extends StatelessWidget {
                     text: text,
                     style: MyTextTheme.headline3,
                   ),
-                  TextSpan(text: " $trailingText"),
+                  TextSpan(text: " $suffixText"),
                 ],
               ),
             ),

@@ -14,6 +14,7 @@ export 'file_image.dart';
 export 'app_bar.dart';
 export 'bottom_sheet.dart';
 export 'text_field.dart';
+export 'slider.dart';
 
 // views/pages/home/widgets/
 export '../pages/home/widgets/home_page_app_bar.dart';
@@ -28,3 +29,7 @@ export '../pages/plant/widgets/plant_page_preference_box.dart';
 export '../pages/plant/widgets/plant_page_preference_box_section.dart';
 export '../pages/plant/widgets/plant_page_name_section.dart';
 export '../pages/plant/widgets/plant_page_edit_profile_sheet.dart';
+export '../pages/plant/widgets/plant_page_edit_water_sheet.dart';
+export '../pages/plant/widgets/plant_page_edit_light_sheet.dart';
+export '../pages/plant/widgets/plant_page_edit_temperature_sheet.dart';
+export '../pages/plant/widgets/plant_page_edit_humidity_sheet.dart';

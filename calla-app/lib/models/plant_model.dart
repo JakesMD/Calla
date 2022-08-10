@@ -24,30 +24,30 @@ class PlantModel {
   Range preferredLight;
   Range preferredTemperature;
   Range preferredHumidity;
-
-  /// This represents the moisture percentage if [wateringSchedule] is 0
-  /// and the amount of water in ml if [waterSchedule] is > 0.
-  double preferredWater;
-
-  /// The hourly schedule to water the plant.
-  ///
-  /// If 0, it will water the plant by soil moisture.
+  int preferredScheduledWater;
+  double preferredAutoWater;
   int wateringSchedule;
+  bool isWateringScheduled;
   bool isOff;
 
   PlantModel({
     required this.number,
-    required this.name,
-    required this.species,
+    this.name = "Plant",
+    this.species = "",
     this.photoPath = "",
     this.lastWatered,
     this.preferredLight = const Range(0.5, 1),
     this.preferredTemperature = const Range(15, 25),
     this.preferredHumidity = const Range(0.45, 0.75),
-    this.preferredWater = 0.5,
-    this.wateringSchedule = 0,
-    this.isOff = false,
+    this.preferredScheduledWater = 24,
+    this.preferredAutoWater = 0.5,
+    this.wateringSchedule = 24,
+    this.isWateringScheduled = false,
+    this.isOff = true,
   });
+
+  /// Fetches the location of the photo in the app documents directory.
+  String fullPhotoPath() => photoPath.isNotEmpty ? "${FileSvc.to.documentsDirPath}/$photoPath" : "";
 
   /// Calculates [PlantMood]s from the conditions of the environment and returns them in a List.
   List<PlantMood> generateMoods() {
@@ -73,8 +73,6 @@ class PlantModel {
     }
     return moods;
   }
-
-  String fullPhotoPath() => photoPath.isNotEmpty ? "${FileSvc.to.documentsDirPath}/$photoPath" : "";
 
   /// Generates a readable text from calculated moods.
   String generateMoodPhrase() {
@@ -110,9 +108,11 @@ class PlantModel {
           json['preferredHumidity'] != null ? json['preferredHumidity'][0] : 0.45,
           json['preferredHumidity'] != null ? json['preferredHumidity'][1] : 0.75,
         ),
-        preferredWater = json['preferredWater'] ?? 0.5,
+        preferredAutoWater = json['preferredAutoWater'] ?? 0.5,
+        preferredScheduledWater = json['preferredScheduledWater'] ?? 24,
         wateringSchedule = json['wateringSchedule'] ?? 0,
-        isOff = json['isOff'] ?? false;
+        isWateringScheduled = json['isWateringScheduled'] ?? false,
+        isOff = json['isOff'] ?? true;
 
   Map<String, dynamic> toJson() => {
         'number': number,
@@ -122,8 +122,10 @@ class PlantModel {
         'preferredLight': [preferredLight.min, preferredLight.max],
         'preferredTemperature': [preferredTemperature.min, preferredTemperature.max],
         'preferredHumidity': [preferredHumidity.min, preferredHumidity.max],
-        'preferredWater': preferredWater,
+        'preferredAutoWater': preferredAutoWater,
+        'preferredScheduledWater': preferredScheduledWater,
         'wateringSchedule': wateringSchedule,
+        'isWateringScheduled': isWateringScheduled,
         'isOff': isOff,
       };
 
@@ -135,8 +137,10 @@ class PlantModel {
     Range? preferredLight,
     Range? preferredTemperature,
     Range? preferredHumidity,
-    double? preferredWater,
+    double? preferredAutoWater,
+    int? preferredScheduledWater,
     int? wateringSchedule,
+    bool? isWateringScheduled,
     bool? isOff,
   }) {
     return PlantModel(
@@ -148,8 +152,10 @@ class PlantModel {
       preferredLight: preferredLight ?? this.preferredLight,
       preferredTemperature: preferredTemperature ?? this.preferredTemperature,
       preferredHumidity: preferredHumidity ?? this.preferredHumidity,
-      preferredWater: preferredWater ?? this.preferredWater,
+      preferredAutoWater: preferredAutoWater ?? this.preferredAutoWater,
+      preferredScheduledWater: preferredScheduledWater ?? this.preferredScheduledWater,
       wateringSchedule: wateringSchedule ?? this.wateringSchedule,
+      isWateringScheduled: isWateringScheduled ?? this.isWateringScheduled,
       isOff: isOff ?? this.isOff,
     );
   }

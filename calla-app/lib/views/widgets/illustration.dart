@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 export 'package:calla/constants/illustrations.dart';
 
-/// An [SVGPicture] that displays the given [illustration] with optional [text] below.
+/// An [MyColoredSVG] that displays the given [illustration] with its replaced colors.
 class MyIllustration extends StatelessWidget {
   final Illustrations illustration;
 

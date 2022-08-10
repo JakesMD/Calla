@@ -7,7 +7,7 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:intl/intl.dart';
 import 'package:get/get.dart';
 
-/// A representation of a [PlantModel].
+/// A representation of a plant.
 class MyHomePagePlant extends StatelessWidget {
   final PlantModel plant;
   final Color color;

@@ -12,10 +12,10 @@ class MyPlantPagePreferenceBoxSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final plant = PlantPageCtl.to.plant;
+    return Obx(() {
+      final plant = PlantPageCtl.to.plant;
 
-    return Obx(
-      () => MySpacedColumn(
+      return MySpacedColumn(
         padding: const EdgeInsets.symmetric(horizontal: MySizeTheme.pageMargin),
         children: [
           MySpacedRow(
@@ -25,20 +25,24 @@ class MyPlantPagePreferenceBoxSection extends StatelessWidget {
                 child: MyPlantPagePreferenceBox(
                   color: AppCtl.to.colors.green,
                   icon: FeatherIcons.cloudDrizzle,
-                  headline: "WATER",
-                  text: plant.wateringSchedule > 0
-                      ? "${(plant.preferredWater).toInt()}ml / ${plant.wateringSchedule}h"
-                      : "${(plant.preferredWater * 100).toInt()}%",
+                  headline: "WATER".tr,
+                  text: plant.isWateringScheduled
+                      ? "${plant.preferredScheduledWater}ml"
+                      : "${(plant.preferredAutoWater * 100).toInt()}%",
+                  suffixText: plant.isWateringScheduled ? "/ ${plant.wateringSchedule}h" : "",
+                  onTap: PlantPageCtl.to.showEditWaterSheet,
                 ),
               ),
+
               // Light:
               Expanded(
                 child: MyPlantPagePreferenceBox(
                   color: AppCtl.to.colors.orange,
                   icon: FeatherIcons.sun,
-                  headline: "LIGHT",
+                  headline: "LIGHT".tr,
                   text:
                       "${(plant.preferredLight.min * 100).toInt()} - ${(plant.preferredLight.max * 100).toInt()}%",
+                  onTap: PlantPageCtl.to.showEditLightSheet,
                 ),
               ),
             ],
@@ -50,9 +54,10 @@ class MyPlantPagePreferenceBoxSection extends StatelessWidget {
                 child: MyPlantPagePreferenceBox(
                   color: AppCtl.to.colors.purple,
                   icon: FeatherIcons.thermometer,
-                  headline: "TEMPERATURE",
+                  headline: "TEMPERATURE".tr,
                   text:
-                      "${plant.preferredTemperature.min.toInt()} - ${plant.preferredTemperature.max.toInt()}°C",
+                      "${(plant.preferredTemperature.min).toInt()} - ${(plant.preferredTemperature.max).toInt()}°C",
+                  onTap: PlantPageCtl.to.showEditTemperatureSheet,
                 ),
               ),
               // Humidity:
@@ -60,15 +65,16 @@ class MyPlantPagePreferenceBoxSection extends StatelessWidget {
                 child: MyPlantPagePreferenceBox(
                   color: AppCtl.to.colors.pink,
                   icon: FeatherIcons.droplet,
-                  headline: "HUMIDITY",
+                  headline: "HUMIDITY".tr,
                   text:
                       "${(plant.preferredHumidity.min * 100).toInt()} - ${(plant.preferredHumidity.max * 100).toInt()}%",
+                  onTap: PlantPageCtl.to.showEditHumiditySheet,
                 ),
               ),
             ],
           ),
         ],
-      ),
-    );
+      );
+    });
   }
 }

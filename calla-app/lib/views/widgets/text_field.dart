@@ -3,17 +3,19 @@ import 'package:calla/themes/themes.dart';
 import 'package:calla/views/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
-/// A custom text field.
+/// A custom [TextField].
 class MyTextField extends StatelessWidget {
   final String hintText;
   final IconData icon;
   final TextEditingController? controller;
+  final Function(String)? onChanged;
 
   const MyTextField({
     Key? key,
     required this.hintText,
     required this.icon,
     this.controller,
+    this.onChanged,
   }) : super(key: key);
 
   @override
@@ -22,15 +24,19 @@ class MyTextField extends StatelessWidget {
       height: MySizeTheme.buttonHeight,
       child: TextField(
         controller: controller,
+        onChanged: onChanged,
         maxLength: 20,
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.symmetric(horizontal: MySizeTheme.spacing10),
-          fillColor: AppCtl.to.colors.pink,
-          filled: false,
+
+          // Hint text:
           hintText: hintText,
           hintStyle: MyTextTheme.bodyText1!.copyWith(color: AppCtl.to.colors.purple),
+          counterText: "", // This hides the counter text even though a maxLength is set.
+
           prefixIcon: MyIcon(icon, color: AppCtl.to.colors.purple),
-          counterText: "",
+
+          // Borders:
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(MySizeTheme.borderRadius10),
             borderSide: BorderSide(

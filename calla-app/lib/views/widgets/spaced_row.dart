@@ -28,7 +28,7 @@ class MySpacedRow extends StatelessWidget {
       spacedChildren.add(SizedBox(width: spacing));
     }
     if (spacedChildren.isNotEmpty) {
-      spacedChildren.removeLast();
+      spacedChildren.removeLast(); // Removes the last spacer.
     }
 
     return Padding(

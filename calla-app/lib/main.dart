@@ -34,6 +34,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         textTheme: MyTextTheme,
         scaffoldBackgroundColor: AppCtl.to.colors.background,
+        sliderTheme: SliderThemeData(
+          activeTrackColor: AppCtl.to.colors.blue,
+          inactiveTrackColor: AppCtl.to.colors.pink,
+          thumbColor: AppCtl.to.colors.background,
+          valueIndicatorColor: AppCtl.to.colors.purple,
+        ),
       ),
 
       // Internationalization:

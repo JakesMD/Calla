@@ -11,8 +11,10 @@ class MyPlantPageNameSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => MySpacedColumn(
+    return Obx(() {
+      final plant = PlantPageCtl.to.plant;
+
+      return MySpacedColumn(
         crossAxisAlignment: CrossAxisAlignment.start,
         padding: const EdgeInsets.symmetric(horizontal: MySizeTheme.pageMargin),
         spacing: 0,
@@ -21,23 +23,20 @@ class MyPlantPageNameSection extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  PlantPageCtl.to.plant.name,
+                  plant.name,
                   style: MyTextTheme.headline1,
                   textAlign: TextAlign.start,
                 ),
               ),
               MyIcon(
                 FeatherIcons.edit2,
-                onTap: PlantPageCtl.to.openEditProfileSheet,
+                onTap: PlantPageCtl.to.showEditProfileSheet,
               ),
             ],
           ),
-          Text(
-            PlantPageCtl.to.plant.species,
-            style: MyTextTheme.headline3,
-          ),
+          Text(plant.species, style: MyTextTheme.headline3),
         ],
-      ),
-    );
+      );
+    });
   }
 }
