@@ -9,15 +9,15 @@ import 'package:get/get.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  // Initialize the controllers.
+  await Get.putAsync(() => AppCtl().init());
+  Get.put(PlantPageCtl());
+
   // Initialize the services.
   await Get.putAsync(() => AssetSvc().init());
   await Get.putAsync(() => PrefsSvc().init());
   await Get.putAsync(() => FileSvc().init());
   await Get.putAsync(() => BluetoothSvc().init());
-
-  // Initialize the controllers.
-  await Get.putAsync(() => AppCtl().init());
-  Get.put(PlantPageCtl());
 
   runApp(const MyApp());
 }

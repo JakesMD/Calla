@@ -17,11 +17,7 @@ class AppCtl extends GetxController {
   final Rx<MyColorTheme> _colors =
       Get.isDarkMode ? MyColorTheme.dark().obs : MyColorTheme.light().obs;
 
-  final RxList<PlantModel> plants = [
-    PrefsSvc.to.plant1,
-    PrefsSvc.to.plant2,
-    PrefsSvc.to.plant3,
-  ].obs;
+  final RxList<PlantModel> plants = <PlantModel>[].obs;
 
   final RxDouble _waterLevel = 1.0.obs;
   final RxDouble _light = 0.75.obs;
@@ -63,9 +59,18 @@ class AppCtl extends GetxController {
     );
   }
 
+  void loadPlants(List<PlantModel> data) => plants.value = data;
+
   /// Updates the edited plant from the [PlantPage] and saves it to local storage.
   void savePlant() {
     plants[PlantPageCtl.to.plant.number - 1] = PlantPageCtl.to.plant;
     PrefsSvc.to.savePlant(PlantPageCtl.to.plant);
+  }
+
+  void updateReadingsFromJson(Map<String, dynamic> json) {
+    _waterLevel.value = json['waterLevel'] ?? 0;
+    _light.value = json['light'] ?? 0;
+    _temperature.value = json['temperature'] ?? 0;
+    _humidity.value = json['humidity'] ?? 0;
   }
 }
