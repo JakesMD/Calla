@@ -122,6 +122,7 @@ class MyHomePagePlant extends StatelessWidget {
               Text(
                 plant.species,
                 style: MyTextTheme.bodyText1,
+                overflow: TextOverflow.ellipsis,
               ),
 
               const Spacer(),

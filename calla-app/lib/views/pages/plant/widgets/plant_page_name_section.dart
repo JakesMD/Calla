@@ -26,6 +26,7 @@ class MyPlantPageNameSection extends StatelessWidget {
                   plant.name,
                   style: MyTextTheme.headline1,
                   textAlign: TextAlign.start,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
               MyIcon(
@@ -34,7 +35,11 @@ class MyPlantPageNameSection extends StatelessWidget {
               ),
             ],
           ),
-          Text(plant.species, style: MyTextTheme.headline3),
+          Text(
+            plant.species,
+            style: MyTextTheme.headline3,
+            overflow: TextOverflow.ellipsis,
+          ),
         ],
       );
     });

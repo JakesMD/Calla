@@ -34,6 +34,7 @@ class MyPlantPagePreferenceBox extends StatelessWidget {
           MyIcon(icon),
           Expanded(
             child: RichText(
+              overflow: TextOverflow.ellipsis,
               text: TextSpan(
                 text: "$headline\n",
                 style: MyTextTheme.bodyText2,
