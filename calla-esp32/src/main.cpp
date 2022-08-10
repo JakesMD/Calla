@@ -11,13 +11,14 @@
 #include <Preferences.h>
 
 // TODO: Edit the pins.
+// TODO: Add water level.
 
 // Define the pins.
 #define SENSOR_POWER_PIN 13
 #define LIGHT_SENSOR_PIN 36
-#define MOISTURE_SENSOR_1_PIN 39
-#define MOISTURE_SENSOR_2_PIN 34
-#define MOISTURE_SENSOR_3_PIN 35
+#define SOIL_SENSOR_1_PIN 39
+#define SOIL_SENSOR_2_PIN 34
+#define SOIL_SENSOR_3_PIN 35
 #define DHT_PIN 5
 #define PUMP_1_PIN 15
 #define PUMP_2_PIN 2
@@ -49,9 +50,10 @@ Adafruit_NeoPixel strip = Adafruit_NeoPixel(8, NEOPIXEL_PIN, NEO_GRB + NEO_KHZ80
 float humidity = 0;
 float temperature = 0;
 uint16_t light = 0;
-uint16_t moisture1 = 0;
-uint16_t moisture2 = 0;
-uint16_t moisture3 = 0;
+uint16_t soil1 = 0;
+uint16_t soil2 = 0;
+uint16_t soil3 = 0;
+uint16_t waterLevel = 0;
 
 // Sets the pin modes for the sensors pins.
 void setupSensors() {
@@ -59,9 +61,9 @@ void setupSensors() {
 
     // Analog inputs:
     pinMode(LIGHT_SENSOR_PIN, INPUT);
-    pinMode(MOISTURE_SENSOR_1_PIN, INPUT);
-    pinMode(MOISTURE_SENSOR_2_PIN, INPUT);
-    pinMode(MOISTURE_SENSOR_3_PIN, INPUT);
+    pinMode(SOIL_SENSOR_1_PIN, INPUT);
+    pinMode(SOIL_SENSOR_2_PIN, INPUT);
+    pinMode(SOIL_SENSOR_3_PIN, INPUT);
 
     // Digital outputs:
     pinMode(PUMP_1_PIN, OUTPUT);
@@ -155,24 +157,24 @@ void readLightSensor() {
     printReading("Light", reading, light);  // Print the reading.
 }
 
-// Reads the moisture sensors.
-void readMoistureSensors() {
-    Serial.print(F("\n\nReading moisture sensors..."));
+// Reads the soil sensors.
+void readSoilSensors() {
+    Serial.print(F("\n\nReading soil sensors..."));
 
     // Read the sensors.
-    float reading1 = takeAverageReading(MOISTURE_SENSOR_1_PIN);
-    float reading2 = takeAverageReading(MOISTURE_SENSOR_2_PIN);
-    float reading3 = takeAverageReading(MOISTURE_SENSOR_3_PIN);
+    float reading1 = takeAverageReading(SOIL_SENSOR_1_PIN);
+    float reading2 = takeAverageReading(SOIL_SENSOR_2_PIN);
+    float reading3 = takeAverageReading(SOIL_SENSOR_3_PIN);
 
-    // Update the moistures as a percentage.
-    moisture1 = map(reading1, settings["soil1CalMin"], settings["soil1CalMax"], 0, 100);
-    moisture2 = map(reading2, settings["soil2CalMin"], settings["soil2CalMax"], 0, 100);
-    moisture3 = map(reading3, settings["soil3CalMin"], settings["soil3CalMax"], 0, 100);
+    // Update the soils as a percentage.
+    soil1 = map(reading1, settings["soil1CalMin"], settings["soil1CalMax"], 0, 100);
+    soil2 = map(reading2, settings["soil2CalMin"], settings["soil2CalMax"], 0, 100);
+    soil3 = map(reading3, settings["soil3CalMin"], settings["soil3CalMax"], 0, 100);
 
     // Print the readings.
-    printReading("Moisture 1", reading1, moisture1);
-    printReading("Moisture 2", reading2, moisture2);
-    printReading("Moisture 3", reading3, moisture3);
+    printReading("Soil 1", reading1, soil1);
+    printReading("Soil 2", reading2, soil2);
+    printReading("Soil 3", reading3, soil3);
 }
 
 // Creates the server, service, characteristics and starts advertising.
@@ -205,6 +207,25 @@ void setupBLE() {
     pAdvertising->setMinPreferred(0x06);  // functions that help with iPhone connections issue
     pAdvertising->setMinPreferred(0x12);
     BLEDevice::startAdvertising();
+}
+
+void notifySensorReadings() {
+    sensorReadings["temperature"] = temperature;
+    sensorReadings["humidity"] = humidity;
+    sensorReadings["light"] = light;
+    sensorReadings["soil1"] = soil1;
+    sensorReadings["soil2"] = soil2;
+    sensorReadings["soil3"] = soil3;
+    sensorReadings["waterLevel"] = waterLevel;
+
+    char jsonString[256];
+    serializeJson(sensorReadings, jsonString);
+
+    Serial.print("\n");
+    Serial.print(jsonString);
+
+    pSensorReadingsCharacteristic->setValue(jsonString);
+    pSensorReadingsCharacteristic->notify();
 }
 
 // Checks that the value has changed before saving.
@@ -321,8 +342,6 @@ void setup() {
 }
 
 void loop() {
-    // pSensorReadingsCharacteristic->setValue();
-    // pSensorReadingsCharacteristic->notify();
-
+    notifySensorReadings();
     delay(2000);
 }
