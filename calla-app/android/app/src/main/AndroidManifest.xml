@@ -1,5 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jakesmd.calla">
+
+    <!-- These permissions are required for the flutter_blue package. -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />  
+	<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />  
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/> 
+
    <application
         android:label="Calla"
         android:name="${applicationName}"

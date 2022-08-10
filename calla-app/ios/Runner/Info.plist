@@ -45,10 +45,23 @@
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	
+	 <!-- These permissions are required for the image_picker package. -->
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Allow access to photo library</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Allow access to camera</string>
+
+	 <!-- These permissions are required for the flutter_blue package. -->
+	<key>NSBluetoothAlwaysUsageDescription</key>  
+	<string>Need BLE permission</string>  
+	<key>NSBluetoothPeripheralUsageDescription</key>  
+	<string>Need BLE permission</string>  
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>  
+	<string>Need Location permission</string>  
+	<key>NSLocationAlwaysUsageDescription</key>  
+	<string>Need Location permission</string>  
+	<key>NSLocationWhenInUseUsageDescription</key>  
+	<string>Need Location permission</string>
 	
 </dict>
 </plist>
